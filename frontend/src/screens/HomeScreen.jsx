@@ -1,7 +1,7 @@
 import React from "react";
-import products from "../products";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Product";
+import products from "../data/products";
 
 function HomeScreen() {
     return (
