@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/errorHandlerMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -13,12 +15,19 @@ connectDB();
 const port = process.env.PORT;
 const app = express();
 app.use(morgan("dev"));
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//CookieParser middleware
+app.use(cookieParser());
 
 app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port || 5000, () => {
-    console.log(`server running on ${port}`.cyan.bold);
+  console.log(`server running on ${port}`.cyan.bold);
 });

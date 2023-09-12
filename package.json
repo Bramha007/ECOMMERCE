@@ -1,38 +1,40 @@
 {
-    "name": "ecommerce",
-    "version": "1.0.0",
-    "description": "Sample ecommerce website built using MERN Stack Technologies",
-    "type": "module",
-    "main": "index.js",
-    "scripts": {
-        "start": "node backend/server.js",
-        "server": "nodemon backend/server.js",
-        "client": "npm start --prefix frontend",
-        "dev": "concurrently \"npm run client\" \"npm run server\"",
-        "data:import": "node backend/seeder.js -i",
-        "data:destroy": "node backend/seeder.js -d"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Bramha007/ECOMMERCE.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Bramha007/ECOMMERCE/issues"
-    },
-    "homepage": "https://github.com/Bramha007/ECOMMERCE#readme",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "colors": "^1.4.0",
-        "express": "^4.18.2",
-        "mongoose": "^7.5.0"
-    },
-    "devDependencies": {
-        "concurrently": "^8.2.1",
-        "dotenv": "^16.3.1",
-        "morgan": "^1.10.0",
-        "nodemon": "^3.0.1"
-    }
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Sample ecommerce website built using MERN Stack Technologies",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "data:import": "node backend/seeder.js -i",
+    "data:destroy": "node backend/seeder.js -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bramha007/ECOMMERCE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bramha007/ECOMMERCE/issues"
+  },
+  "homepage": "https://github.com/Bramha007/ECOMMERCE#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
 }
