@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
 // @desc Auth user and get token
-// route POST /api/v1/users/login
+// route POST /api/v1/users/auth
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -26,7 +26,6 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Credentials");
   }
   if (user && isMatch) {
-    console.log(user);
     generateToken(res, user);
     res.status(200).json({
       _id: user._id,
