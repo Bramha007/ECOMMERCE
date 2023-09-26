@@ -119,6 +119,7 @@ function ProfileScreen() {
                 <th>TOTAL</th>
                 <th>PAID</th>
                 <th>DELIVERED</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -128,13 +129,17 @@ function ProfileScreen() {
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
-                    {order.isPaid ? order.paidAt.substring(0, 10) : <FaTimes />}
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <FaTimes />
+                      <FaTimes style={{ color: "red" }} />
                     )}
                   </td>
                   <td>
