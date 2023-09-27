@@ -68,11 +68,11 @@ function OrderScreen() {
     }
   };
 
-  // const onApproveTest = async () => {
-  //   await payOrder({ orderId, details: { payer: {} } });
-  //   refetch();
-  //   toast.success("Payment Succesful");
-  // };
+  const onApproveTest = async () => {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
+    toast.success("Payment Succesful");
+  };
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(async function (details) {
@@ -204,12 +204,12 @@ function OrderScreen() {
                   ) : (
                     <div>
                       {/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
-                      {/* <Button
+                      <Button
                         style={{ marginBottom: "10px" }}
                         onClick={onApproveTest}
                       >
                         Test Pay Order
-                      </Button> */}
+                      </Button>
 
                       <div>
                         <PayPalButtons
