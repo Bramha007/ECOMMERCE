@@ -96,7 +96,7 @@ function EditProductScreen() {
         {loadingUpdateProduct ? (
           <Loader />
         ) : errorUpdate ? (
-          <Message variant="danger">{errorUpdate}</Message>
+          <Message variant="danger">{errorUpdate.data.message}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group className="my-2" controlId="name">
