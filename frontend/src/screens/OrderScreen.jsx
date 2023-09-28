@@ -19,14 +19,16 @@ function OrderScreen() {
 
   const {
     data: order,
-    refetch,
     isLoading,
     error,
+    refetch,
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [deliverOrderAdmin, { isLoading: loadingDeliver }] =
     useDeliverOrderAdminMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -35,8 +37,6 @@ function OrderScreen() {
     isLoading: loadingPayPal,
     error: errorPayPal,
   } = useGetPayPalClinetIdQuery();
-
-  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -58,26 +58,11 @@ function OrderScreen() {
     }
   }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
 
-  const deliverOrderHandler = async () => {
-    try {
-      await deliverOrderAdmin(orderId);
-      refetch();
-      toast.success("Order Delivered");
-    } catch (error) {
-      toast.error(error?.data?.message || error.message);
-    }
-  };
-
-  // const onApproveTest = async () => {
-  //   await payOrder({ orderId, details: { payer: {} } });
-  //   refetch();
-  //   toast.success("Payment Succesful");
-  // };
-
   const onApprove = (data, actions) => {
     return actions.order.capture().then(async function (details) {
       try {
-        await payOrder({ orderId, details });
+        console.log({ orderId, details });
+        await payOrder({ orderId, details }).unwrap();
         refetch();
         toast.success("Payment Succesful");
       } catch (error) {
@@ -105,6 +90,22 @@ function OrderScreen() {
         return orderId;
       });
   };
+
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrderAdmin(orderId);
+      refetch();
+      toast.success("Order Delivered");
+    } catch (error) {
+      toast.error(error?.data?.message || error.message);
+    }
+  };
+
+  // const onApproveTest = async () => {
+  //   await payOrder({ orderId, details: { payer: {} } });
+  //   refetch();
+  //   toast.success("Payment Succesful");
+  // };
 
   return isLoading ? (
     <Loader />
