@@ -85,11 +85,9 @@ const getMyOrderById = asyncHandler(async (req, res) => {
 // route PUT /api/v1/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  console.log(req.body);
   // NOTE: here we need to verify the payment was made to PayPal before marking
   // the order as paid
   const { verified, value } = await verifyPayPalPayment(req.body.id);
-  console.log({ verified, value });
   if (!verified) {
     res.status(400);
     throw new Error("Payment not verified");
